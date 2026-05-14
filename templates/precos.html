@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<a href="/" class="back-link">
+    ← Voltar
+</a>
+
+<section class="page-title">
+    <h1>Preços Agrícolas</h1>
+    <p>Preços atualizados dos principais produtos da região</p>
+</section>
+
+<section class="price-grid">
+
+    <div class="price-card">
+        <div class="price-top">
+            <div>
+                <h2>Açaí</h2>
+                <p>lata (14kg)</p>
+            </div>
+            <span class="status up">↗</span>
+        </div>
+
+        <hr>
+
+        <h3>R$ 85.00</h3>
+        <p>Anterior: R$ 80.00</p>
+        <small>Fonte: feira local</small>
+    </div>
+
+    <div class="price-card">
+        <div class="price-top">
+            <div>
+                <h2>Mandioca</h2>
+                <p>saco (50kg)</p>
+            </div>
+            <span class="status down">↘</span>
+        </div>
+
+        <hr>
+
+        <h3>R$ 45.00</h3>
+        <p>Anterior: R$ 48.00</p>
+        <small>Fonte: produtores locais</small>
+    </div>
+
+    <div class="price-card">
+        <div class="price-top">
+            <div>
+                <h2>Cacau</h2>
+                <p>arroba (15kg)</p>
+            </div>
+            <span class="status up">↗</span>
+        </div>
+
+        <hr>
+
+        <h3>R$ 420.00</h3>
+        <p>Anterior: R$ 410.00</p>
+        <small>Fonte: referência regional</small>
+    </div>
+
+    <div class="price-card">
+        <div class="price-top">
+            <div>
+                <h2>Farinha</h2>
+                <p>saco (50kg)</p>
+            </div>
+            <span class="status stable">→</span>
+        </div>
+
+        <hr>
+
+        <h3>R$ 120.00</h3>
+        <p>Anterior: R$ 120.00</p>
+        <small>Fonte: feira local</small>
+    </div>
+
+    <div class="price-card">
+        <div class="price-top">
+            <div>
+                <h2>Dendê</h2>
+                <p>cacho (10kg)</p>
+            </div>
+            <span class="status up">↗</span>
+        </div>
+
+        <hr>
+
+        <h3>R$ 35.00</h3>
+        <p>Anterior: R$ 33.00</p>
+        <small>Fonte: produtores locais</small>
+    </div>
+
+    <div class="price-card">
+        <div class="price-top">
+            <div>
+                <h2>Cupuaçu</h2>
+                <p>kg</p>
+            </div>
+            <span class="status up">↗</span>
+        </div>
+
+        <hr>
+
+        <h3>R$ 5.50</h3>
+        <p>Anterior: R$ 5.00</p>
+        <small>Fonte: feira local</small>
+    </div>
+
+</section>
+
+<div class="price-footer">
+    📊 Preços de referência da feira local — Atualizado em 08/05/2026
+    <br>
+    <span>
+        Valores aproximados, sujeitos a variação conforme safra, transporte e negociação.
+    </span>
+</div>
+
+{% endblock %}

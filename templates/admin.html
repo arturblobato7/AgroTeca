@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="page-title">
+    <h1>Painel de Curadoria</h1>
+    <p>Conteúdos aguardando aprovação</p>
+</section>
+
+<section class="admin-list">
+
+    {% for conteudo in conteudos %}
+
+    <div class="admin-card">
+
+        <div class="admin-top">
+
+            <div>
+                <h2>{{ conteudo[1] }}</h2>
+
+                <span>
+                    {{ conteudo[3] }} • {{ conteudo[4] }}
+                </span>
+            </div>
+
+            <div class="status-badge">
+                Pendente
+            </div>
+
+        </div>
+
+        <p class="admin-description">
+            {{ conteudo[2] }}
+        </p>
+
+        <div class="admin-author">
+            Enviado por: {{ conteudo[5] }}
+        </div>
+
+        <div class="admin-actions">
+
+            <a href="/aprovar/{{ conteudo[0] }}" class="approve-btn">
+                Aprovar
+            </a>
+
+            <a href="/rejeitar/{{ conteudo[0] }}" class="reject-btn">
+                Rejeitar
+             </a>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</section>
+
+{% endblock %}

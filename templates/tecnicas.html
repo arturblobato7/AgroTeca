@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<a href="/" class="back-link">
+    <i class="fa-solid fa-arrow-left"></i>
+    Voltar
+</a>
+
+<section class="page-title">
+    <h1>Técnicas de Plantio</h1>
+    <p>Dicas práticas para melhorar sua produção</p>
+</section>
+
+<h2 class="section-title">Cuidados Essenciais</h2>
+
+<section class="tips-grid">
+
+    {% for tecnica in tecnicas %}
+
+    <div class="tip-card">
+
+        <div class="tip-header">
+
+            <div class="tip-icon">
+                <i class="fa-solid fa-seedling"></i>
+            </div>
+
+            <h3>{{ tecnica[1] }}</h3>
+
+        </div>
+
+        <p>
+            {{ tecnica[2] }}
+        </p>
+
+        <small>
+            Enviado por {{ tecnica[5] }}
+        </small>
+
+    </div>
+
+    {% endfor %}
+
+</section>
+
+<h2 class="section-title">Guia por Cultivo</h2>
+
+<section class="crop-list">
+
+    <div class="crop-card">
+        <div class="crop-top">
+            <h3>Açaí</h3>
+
+            <div class="crop-tags">
+                <span>🗓 3-4 anos para produção</span>
+                <span>📏 5x5 metros</span>
+            </div>
+        </div>
+
+        <p>💡 Plantar em áreas úmidas próximas a igarapés</p>
+    </div>
+
+    <div class="crop-card">
+        <div class="crop-top">
+            <h3>Mandioca</h3>
+
+            <div class="crop-tags">
+                <span>🗓 8-12 meses</span>
+                <span>📏 1x1 metro</span>
+            </div>
+        </div>
+
+        <p>💡 Solo bem drenado e exposição solar</p>
+    </div>
+
+    <div class="crop-card">
+        <div class="crop-top">
+            <h3>Cacau</h3>
+
+            <div class="crop-tags">
+                <span>🗓 2-3 anos para produção</span>
+                <span>📏 3x3 metros</span>
+            </div>
+        </div>
+
+        <p>💡 Plantar sob sombreamento de árvores maiores</p>
+    </div>
+
+    <div class="crop-card">
+        <div class="crop-top">
+            <h3>Dendê</h3>
+
+            <div class="crop-tags">
+                <span>🗓 3-4 anos para produção</span>
+                <span>📏 9x9 metros</span>
+            </div>
+        </div>
+
+        <p>💡 Solos profundos e bem drenados, adapta-se a clima quente e úmido</p>
+    </div>
+
+</section>
+
+<div class="tips-footer">
+    🌱 Consulte sempre agricultores experientes da comunidade
+</div>
+
+{% endblock %}

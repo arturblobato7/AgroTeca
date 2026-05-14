@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="page-title">
+    <h1>Acesso do Curador</h1>
+    <p>Entre para avaliar os conteúdos enviados pela comunidade</p>
+</section>
+
+<form class="login-card" method="POST">
+
+    <div class="form-group">
+        <label>Usuário</label>
+        <input type="text" name="usuario" required>
+    </div>
+
+    <div class="form-group">
+        <label>Senha</label>
+        <input type="password" name="senha" required>
+    </div>
+
+    <button type="submit" class="send-button">
+        Entrar
+    </button>
+
+</form>
+
+{% endblock %}

@@ -1,0 +1,131 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background-color: #f7f4ec;
+    color: #3f3f2f;
+}
+
+.container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.home-icon {
+    color: #517a5b;
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.hero h1 {
+    color: #4f7d59;
+    font-size: 34px;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.hero p {
+    max-width: 690px;
+    margin: 0 auto;
+    font-size: 19px;
+    line-height: 1.4;
+    color: #4d4d3d;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.card {
+    height: 155px;
+    border-radius: 14px;
+    text-decoration: none;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.14);
+    transition: 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 9px 18px rgba(0, 0, 0, 0.18);
+}
+
+.card i {
+    font-size: 38px;
+    margin-bottom: 20px;
+}
+
+.card span {
+    font-size: 21px;
+    font-weight: 800;
+}
+
+.card-green {
+    background-color: #557f5c;
+}
+
+.card-olive {
+    background-color: #5f7032;
+}
+
+.card-brown {
+    background-color: #8d7b5b;
+}
+
+.card-light {
+    background-color: #aab879;
+}
+
+.card-send {
+    background-color: #6f8f43;
+}
+
+footer {
+    margin: 36px auto 0;
+    max-width: 900px;
+    background-color: white;
+    border: 1px solid #e2ded2;
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+    color: #65743b;
+    font-size: 17px;
+}
+
+/* Responsivo para celular */
+@media (max-width: 700px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 27px;
+    }
+
+    .hero p {
+        font-size: 17px;
+    }
+
+    .card {
+        height: 135px;
+    }
+}

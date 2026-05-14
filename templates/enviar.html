@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<a href="/" class="back-link">
+    <i class="fa-solid fa-arrow-left"></i>
+    Voltar
+</a>
+
+<section class="page-title">
+    <h1>Enviar Conhecimento</h1>
+    <p>Compartilhe saberes, técnicas e experiências da comunidade</p>
+</section>
+
+<section class="send-layout">
+
+    <form class="send-form" method="POST">
+
+        <div class="form-group">
+            <label>Nome do colaborador</label>
+            <input 
+                type="text" 
+                name="autor" 
+                placeholder="Ex: Dona Maria, Seu José..."
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label>Título do conhecimento</label>
+            <input 
+                type="text" 
+                name="titulo" 
+                placeholder="Ex: Como preparar a terra para plantar mandioca"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label>Categoria</label>
+            <select name="categoria" required>
+                <option value="Técnica de plantio">Técnica de plantio</option>
+                <option value="Colheita">Colheita</option>
+                <option value="Receita tradicional">Receita tradicional</option>
+                <option value="História da comunidade">História da comunidade</option>
+                <option value="Cuidados com o solo">Cuidados com o solo</option>
+                <option value="Outro">Outro</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Tipo de conteúdo</label>
+
+            <div class="content-options">
+                <label>
+                    <input type="radio" name="tipo" value="Texto" checked>
+                    Texto
+                </label>
+
+                <label>
+                    <input type="radio" name="tipo" value="Áudio">
+                    Áudio
+                </label>
+
+                <label>
+                    <input type="radio" name="tipo" value="Vídeo">
+                    Vídeo
+                </label>
+
+                <label>
+                    <input type="radio" name="tipo" value="Foto">
+                    Foto
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Descreva o conhecimento</label>
+            <textarea 
+                name="descricao" 
+                rows="6" 
+                placeholder="Conte com suas palavras como essa técnica, história ou experiência funciona..."
+                required
+            ></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Anexar arquivo (opcional)</label>
+            <input type="file" name="arquivo">
+            <small>Você pode anexar foto, vídeo, áudio ou documento.</small>
+        </div>
+
+        <button type="submit" class="send-button">
+            <i class="fa-solid fa-paper-plane"></i>
+            Enviar para avaliação
+        </button>
+
+    </form>
+
+    <aside class="review-box">
+
+        <div class="review-icon">
+            <i class="fa-solid fa-shield-halved"></i>
+        </div>
+
+        <h2>Como funciona a avaliação?</h2>
+
+        <div class="review-step">
+            <span>1</span>
+            <p>O morador envia seu conhecimento.</p>
+        </div>
+
+        <div class="review-step">
+            <span>2</span>
+            <p>A equipe organiza e revisa o conteúdo.</p>
+        </div>
+
+        <div class="review-step">
+            <span>3</span>
+            <p>Um curador aprova antes da publicação.</p>
+        </div>
+
+        <div class="review-step">
+            <span>4</span>
+            <p>O conteúdo fica disponível para a comunidade.</p>
+        </div>
+
+        <div class="review-warning">
+            🤖 A IA pode ajudar a organizar o texto, mas a aprovação final é humana.
+        </div>
+
+    </aside>
+
+</section>
+
+<div class="send-footer">
+    🌱 Todo conhecimento enviado será tratado com respeito e valorização da cultura local
+</div>
+
+{% endblock %}

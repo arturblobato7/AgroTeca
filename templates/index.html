@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>AgroTeca</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Fonte -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <main class="container">
+
+        <section class="hero">
+            <div class="home-icon">
+                <i class="fa-solid fa-house"></i>
+            </div>
+
+            <h1>AgroTeca</h1>
+
+            <p>
+                Bem-vindo! Aqui você encontra informações sobre agricultura,
+                técnicas de plantio e conhecimento compartilhado da nossa comunidade.
+            </p>
+        </section>
+
+        <section class="cards">
+
+            <a href="/precos" class="card card-green">
+                 <i class="fa-solid fa-arrow-trend-up"></i>
+                 <span>Preços Agrícolas</span>
+            </a>
+
+            <a href="/tecnicas" class="card card-olive">
+                <i class="fa-solid fa-seedling"></i>
+                <span>Técnicas de Plantio</span>
+            </a>
+
+            <a href="/videos" class="card card-brown">
+                <i class="fa-solid fa-video"></i>
+                <span>Vídeos da Comunidade</span>
+            </a>
+
+            <a href="/cartilhas" class="card card-light">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Cartilhas</span>
+            </a>
+
+            <a href="/comunidade" class="card card-green">
+                <i class="fa-solid fa-users"></i>
+                <span>Informações da Comunidade</span>
+            </a>
+
+            <a href="/enviar" class="card card-send">
+                <i class="fa-solid fa-upload"></i>
+                <span>Enviar Conhecimento</span>
+            </a>
+
+            <a href="/conteudos" class="card card-light">
+                <i class="fa-solid fa-folder-open"></i>
+                <span>Acervo da Biblioteca</span>
+            </a>
+
+        </section>
