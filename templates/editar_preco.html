@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<a href="/admin/precos" class="back-link">
+    <i class="fa-solid fa-arrow-left"></i>
+    Voltar
+</a>
+
+<section class="page-title">
+    <h1>Editar Preço</h1>
+    <p>Atualize as informações do produto agrícola</p>
+</section>
+
+<form class="send-form" method="POST">
+
+    <div class="form-group">
+        <label>Produto</label>
+        <input type="text" name="produto" value="{{ preco[1] }}" required>
+    </div>
+
+    <div class="form-group">
+        <label>Unidade</label>
+        <input type="text" name="unidade" value="{{ preco[2] }}" required>
+    </div>
+
+    <div class="form-group">
+        <label>Preço atual</label>
+        <input type="number" step="0.01" name="preco_atual" value="{{ preco[3] }}" required>
+    </div>
+
+    <div class="form-group">
+        <label>Preço anterior</label>
+        <input type="number" step="0.01" name="preco_anterior" value="{{ preco[4] }}" required>
+    </div>
+
+    <div class="form-group">
+        <label>Fonte</label>
+        <input type="text" name="fonte" value="{{ preco[5] }}" required>
+    </div>
+
+    <div class="form-group">
+        <label>Data de atualização</label>
+        <input type="date" name="data_atualizacao" value="{{ preco[6] }}" required>
+    </div>
+
+    <button type="submit" class="send-button">
+        Salvar alterações
+    </button>
+
+</form>
+
+{% endblock %}

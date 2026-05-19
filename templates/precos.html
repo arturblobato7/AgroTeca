@@ -38,7 +38,10 @@
 
         <p>Anterior: R$ {{ "%.2f"|format(preco[4]) }}</p>
         <small>Fonte: {{ preco[5] }}</small>
-        <small>Atualizado em: {{ preco[6] }}</small>
+        <p>
+    Atualizado em:
+    {{ preco[6].split('-')[2] }}/{{ preco[6].split('-')[1] }}/{{ preco[6].split('-')[0] }}
+</p>
 
     </div>
 
@@ -47,7 +50,9 @@
 </section>
 
 <div class="price-footer">
-    📊 Preços de referência da feira local — Atualizado em 08/05/2026
+     📊 Preços de referência da feira local —
+Atualizado em
+{{ ultima_data.split('-')[2] }}/{{ ultima_data.split('-')[1] }}/{{ ultima_data.split('-')[0] }}
     <br>
     <span>
         Valores aproximados, sujeitos a variação conforme safra, transporte e negociação.

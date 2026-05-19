@@ -28,16 +28,19 @@ def precos():
 
     cursor.execute("""
         SELECT * FROM precos
-        ORDER BY id DESC
+        ORDER BY data_atualizacao DESC
     """)
 
     precos = cursor.fetchall()
+
+    ultima_data = precos[0][6] if precos else None
 
     conexao.close()
 
     return render_template(
         "precos.html",
-        precos=precos
+        precos=precos,
+        ultima_data=ultima_data
     )
 
 
@@ -286,6 +289,116 @@ def deletar_preco(id):
     conexao.close()
 
     return redirect("/admin/precos")
+
+
+@app.route("/editar_preco/<int:id>", methods=["GET", "POST"])
+def editar_preco(id):
+
+    if "logado" not in session:
+        return redirect("/login")
+
+    conexao = conectar_banco()
+    cursor = conexao.cursor()
+
+    if request.method == "POST":
+        produto = request.form["produto"]
+        unidade = request.form["unidade"]
+        preco_atual = float(request.form["preco_atual"])
+        preco_anterior = float(request.form["preco_anterior"])
+        fonte = request.form["fonte"]
+        data_atualizacao = request.form["data_atualizacao"]
+
+        if preco_atual > preco_anterior:
+            tendencia = "subiu"
+        elif preco_atual < preco_anterior:
+            tendencia = "caiu"
+        else:
+            tendencia = "estavel"
+
+        cursor.execute("""
+            UPDATE precos
+            SET produto = ?,
+                unidade = ?,
+                preco_atual = ?,
+                preco_anterior = ?,
+                fonte = ?,
+                data_atualizacao = ?,
+                tendencia = ?
+            WHERE id = ?
+        """, (
+            produto,
+            unidade,
+            preco_atual,
+            preco_anterior,
+            fonte,
+            data_atualizacao,
+            tendencia,
+            id
+        ))
+
+        conexao.commit()
+        conexao.close()
+
+        return redirect("/admin/precos")
+
+    cursor.execute("""
+        SELECT * FROM precos
+        WHERE id = ?
+    """, (id,))
+
+    preco = cursor.fetchone()
+    conexao.close()
+
+    return render_template("editar_preco.html", preco=preco)
+
+
+@app.route("/editar_conteudo/<int:id>", methods=["GET", "POST"])
+def editar_conteudo(id):
+
+    if "logado" not in session:
+        return redirect("/login")
+
+    conexao = conectar_banco()
+    cursor = conexao.cursor()
+
+    if request.method == "POST":
+        titulo = request.form["titulo"]
+        categoria = request.form["categoria"]
+        tipo = request.form["tipo"]
+        descricao = request.form["descricao"]
+        autor = request.form["autor"]
+
+        cursor.execute("""
+            UPDATE conteudos
+            SET titulo = ?,
+                categoria = ?,
+                tipo = ?,
+                descricao = ?,
+                autor = ?
+            WHERE id = ?
+        """, (
+            titulo,
+            categoria,
+            tipo,
+            descricao,
+            autor,
+            id
+        ))
+
+        conexao.commit()
+        conexao.close()
+
+        return redirect("/admin")
+
+    cursor.execute("""
+        SELECT * FROM conteudos
+        WHERE id = ?
+    """, (id,))
+
+    conteudo = cursor.fetchone()
+    conexao.close()
+
+    return render_template("editar_conteudo.html", conteudo=conteudo)
 
 
 # -------------------------
