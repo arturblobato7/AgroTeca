@@ -1,39 +1,49 @@
-# 🌱 Biblioteca Comunitária de Jutaiteua
+# 🌱 AgroTeca — Biblioteca Comunitária de Jutaiteua
 
-A Biblioteca Comunitária de Jutaiteua é uma plataforma digital colaborativa desenvolvida para preservar, organizar e compartilhar conhecimentos agrícolas, culturais e educativos da comunidade de Jutaiteua, no interior do Pará.
+A AgroTeca é uma plataforma digital comunitária desenvolvida para preservar, organizar e compartilhar conhecimentos agrícolas, culturais e educativos da comunidade de Jutaiteua, no interior do Pará.
 
-O sistema permite que moradores compartilhem técnicas de plantio, experiências locais, cartilhas e outros conteúdos comunitários, que passam por um processo de curadoria antes da publicação.
+O sistema conecta tecnologia e saberes tradicionais amazônicos, permitindo que moradores enviem conteúdos que passam por um processo de curadoria antes da publicação.
 
 ---
 
-# 🚀 Funcionalidades
+# 🌎 Objetivo do Projeto
+
+Fortalecer a agricultura familiar e valorizar os conhecimentos tradicionais da comunidade através de uma plataforma acessível, colaborativa e sustentável.
+
+---
+
+# 🚀 Funcionalidades Implementadas
 
 ## 📚 Biblioteca Comunitária
-- Compartilhamento de conhecimentos da comunidade
-- Técnicas de plantio
+- Página inicial institucional
 - Informações sobre a comunidade
-- Cartilhas educativas
-- Vídeos comunitários
+- Técnicas de plantio
+- Cartilhas comunitárias
+- Vídeos educativos
+- Página de conteúdos aprovados
 
 ---
 
 ## 🛡️ Sistema de Curadoria
-- Envio de conteúdos
+- Envio de conteúdos pela comunidade
 - Aprovação de conteúdos
 - Rejeição de conteúdos
 - Exclusão de conteúdos
-- Área administrativa protegida por login
+- Edição de conteúdos enviados
+- Painel administrativo protegido por login
 
 ---
 
-## 📈 Preços Agrícolas Dinâmicos
+## 📈 Sistema Dinâmico de Preços Agrícolas
 - Cadastro de preços agrícolas
-- Atualização dinâmica via painel admin
-- Tendência automática de preço:
-  - Subiu
-  - Caiu
-  - Estável
+- Atualização dinâmica via banco de dados
+- Tendência automática:
+  - 📈 Subiu
+  - 📉 Caiu
+  - ➖ Estável
 - Exclusão de preços
+- Edição de preços
+- Página pública atualizada automaticamente
 
 ---
 
@@ -45,7 +55,8 @@ O sistema permite que moradores compartilhem técnicas de plantio, experiências
 - HTML5
 - CSS3
 - Jinja2
-- Git/GitHub
+- Git
+- GitHub
 
 ---
 
@@ -56,15 +67,34 @@ AGROTECA/
 │
 ├── app.py
 ├── db.py
+├── database.db
 ├── .gitignore
-│
-├── templates/
+├── README.md
 │
 ├── static/
 │   ├── style.css
-│   └── uploads/
+│   ├── index.css
+│   ├── preco.css
+│   ├── tecnicas.css
+│   └── videos.css
 │
-└── database.db
+├── templates/
+│   ├── base.html
+│   ├── index.html
+│   ├── comunidade.html
+│   ├── tecnicas.html
+│   ├── cartilhas.html
+│   ├── videos.html
+│   ├── enviar.html
+│   ├── conteudos.html
+│   ├── admin.html
+│   ├── admin_precos.html
+│   ├── editar_conteudo.html
+│   ├── editar_preco.html
+│   ├── login.html
+│   └── precos.html
+│
+└── __pycache__/
 ```
 
 ---
@@ -120,26 +150,61 @@ Senha: 1234
 
 ---
 
-# 🎯 Objetivo do Projeto
+# 🧩 Funcionalidades Técnicas
 
-O projeto busca fortalecer a agricultura familiar e valorizar os saberes locais através da tecnologia, criando uma plataforma acessível para compartilhamento de conhecimento e preservação cultural amazônica.
+## CRUD de Conteúdos
+- Create → Enviar conteúdo
+- Read → Visualizar conteúdos
+- Update → Editar conteúdo
+- Delete → Excluir conteúdo
 
 ---
 
-# 🌎 Futuras Implementações
+## CRUD de Preços
+- Create → Cadastrar preço
+- Read → Exibir preços
+- Update → Editar preço
+- Delete → Excluir preço
 
+---
+
+# 🎨 Interface
+
+A interface foi desenvolvida com foco em:
+- simplicidade;
+- acessibilidade;
+- identidade amazônica;
+- experiência comunitária.
+
+---
+
+# 🌱 Impacto Social
+
+A AgroTeca busca:
+- preservar conhecimentos tradicionais;
+- incentivar agricultura familiar;
+- democratizar acesso à informação;
+- fortalecer comunidades rurais;
+- integrar tecnologia e cultura amazônica.
+
+---
+
+# 🚧 Próximas Implementações
+
+- Upload real de imagens
 - Upload de PDFs
-- Upload de imagens
 - Upload de vídeos
+- Sistema de usuários
 - Busca de conteúdos
 - Filtros por categoria
-- Sistema de usuários
-- Deploy online
+- Comentários da comunidade
 - Integração com APIs agrícolas
-- Inteligência Artificial para apoio à curadoria
+- Dashboard estatístico
+- Deploy online
+- Responsividade mobile avançada
 
 ---
 
-# 👨‍💻 Desenvolvido por
+# 👨‍💻 Desenvolvimento
 
-Projeto acadêmico desenvolvido para o Amazon Hacking, com foco em impacto social, inclusão digital e fortalecimento comunitário.
+Projeto acadêmico desenvolvido para o Amazon Hacking, com foco em tecnologia social, sustentabilidade e valorização cultural amazônica.
