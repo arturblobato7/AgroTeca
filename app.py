@@ -1,7 +1,13 @@
 from flask import Flask, render_template, request, redirect, session
 from db import conectar_banco, criar_banco
+from werkzeug.utils import secure_filename
+import os
 
 app = Flask(__name__)
+
+UPLOAD_FOLDER = "static/uploads"
+
+app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
 app.secret_key = "chave_secreta_biblioteca_jutaiteua"
 
@@ -51,9 +57,22 @@ def videos():
     return render_template("videos.html")
 
 
+
 @app.route("/cartilhas")
 def cartilhas():
-    return render_template("cartilhas.html")
+    conexao = conectar_banco()
+    cursor = conexao.cursor()
+
+    cursor.execute("""
+    SELECT * FROM conteudos
+    WHERE status = 'aprovado'
+    AND categoria = 'Cartilha'
+    """)
+
+    conteudos = cursor.fetchall()
+    conexao.close()
+
+    return render_template("cartilhas.html", conteudos=conteudos)
 
 
 @app.route("/comunidade")
@@ -72,14 +91,35 @@ def enviar():
         tipo = request.form["tipo"]
         descricao = request.form["descricao"]
 
+        arquivo = request.files["arquivo"]
+        nome_arquivo = None
+
+        if arquivo and arquivo.filename != "":
+
+            nome_arquivo = secure_filename(arquivo.filename)
+
+            caminho_arquivo = os.path.join(
+                app.config["UPLOAD_FOLDER"],
+                nome_arquivo
+            )
+
+            arquivo.save(caminho_arquivo)
+
         conexao = conectar_banco()
         cursor = conexao.cursor()
 
         cursor.execute("""
             INSERT INTO conteudos
-            (titulo, descricao, categoria, tipo, autor)
-            VALUES (?, ?, ?, ?, ?)
-        """, (titulo, descricao, categoria, tipo, autor))
+            (titulo, descricao, categoria, tipo, autor, arquivo)
+            VALUES (?, ?, ?, ?, ?, ?)
+        """, (
+            titulo,
+            descricao,
+            categoria,
+            tipo,
+            autor,
+            nome_arquivo
+        ))
 
         conexao.commit()
         conexao.close()

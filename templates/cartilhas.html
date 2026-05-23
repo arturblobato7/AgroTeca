@@ -14,24 +14,7 @@
 
 <section class="booklet-grid">
 
-    <div class="booklet-card">
-        <div class="booklet-info">
-            <div class="booklet-icon">
-                <i class="fa-regular fa-file-lines"></i>
-            </div>
-
-            <div>
-                <h2>Guia de Plantio Sustentável</h2>
-                <p>Técnicas básicas para começar sua horta</p>
-                <small>24 páginas • 2.5 MB</small>
-            </div>
-        </div>
-
-        <a href="#" class="download-btn">
-            <i class="fa-solid fa-download"></i>
-            Baixar PDF
-        </a>
-    </div>
+    {% for conteudo in conteudos %}
 
     <div class="booklet-card">
         <div class="booklet-info">
@@ -40,131 +23,40 @@
             </div>
 
             <div>
-                <h2>Calendário Agrícola do Pará</h2>
-                <p>Melhores épocas para plantio e colheita</p>
-                <small>12 páginas • 1.8 MB</small>
+                <h2>{{ conteudo[1] }}</h2>
+                <p>{{ conteudo[2] }}</p>
+                <small>Enviado por: {{ conteudo[5] }}</small>
             </div>
         </div>
 
-        <a href="#" class="download-btn">
-            <i class="fa-solid fa-download"></i>
-            Baixar PDF
-        </a>
+        {% if conteudo[6] %}
+       <a
+    href="{{ url_for('static', filename='uploads/' + conteudo[6]) }}"
+    target="_blank"
+    class="download-btn"
+>
+    {% if conteudo[6].endswith('.pdf') %}
+        <i class="fa-solid fa-file-pdf"></i>
+
+    {% elif conteudo[6].endswith('.mp4') %}
+        <i class="fa-solid fa-file-video"></i>
+
+    {% elif conteudo[6].endswith('.mp3') %}
+        <i class="fa-solid fa-file-audio"></i>
+
+    {% elif conteudo[6].endswith('.png') or conteudo[6].endswith('.jpg') or conteudo[6].endswith('.jpeg') %}
+        <i class="fa-solid fa-file-image"></i>
+
+    {% else %}
+        <i class="fa-solid fa-file"></i>
+    {% endif %}
+
+    Abrir arquivo
+</a>
+        {% endif %}
     </div>
 
-    <div class="booklet-card">
-        <div class="booklet-info">
-            <div class="booklet-icon">
-                <i class="fa-regular fa-file-lines"></i>
-            </div>
-
-            <div>
-                <h2>Manejo do Açaí</h2>
-                <p>Do plantio à comercialização</p>
-                <small>36 páginas • 4.2 MB</small>
-            </div>
-        </div>
-
-        <a href="#" class="download-btn">
-            <i class="fa-solid fa-download"></i>
-            Baixar PDF
-        </a>
-    </div>
-
-    <div class="booklet-card">
-        <div class="booklet-info">
-            <div class="booklet-icon">
-                <i class="fa-regular fa-file-lines"></i>
-            </div>
-
-            <div>
-                <h2>Aproveitamento da Mandioca</h2>
-                <p>Receitas e técnicas de processamento</p>
-                <small>18 páginas • 2.1 MB</small>
-            </div>
-        </div>
-
-        <a href="#" class="download-btn">
-            <i class="fa-solid fa-download"></i>
-            Baixar PDF
-        </a>
-    </div>
-
-    <div class="booklet-card">
-        <div class="booklet-info">
-            <div class="booklet-icon">
-                <i class="fa-regular fa-file-lines"></i>
-            </div>
-
-            <div>
-                <h2>Agrofloresta na Amazônia</h2>
-                <p>Como criar sistemas agroflorestais</p>
-                <small>42 páginas • 5.5 MB</small>
-            </div>
-        </div>
-
-        <a href="#" class="download-btn">
-            <i class="fa-solid fa-download"></i>
-            Baixar PDF
-        </a>
-    </div>
-
-    <div class="booklet-card">
-        <div class="booklet-info">
-            <div class="booklet-icon">
-                <i class="fa-regular fa-file-lines"></i>
-            </div>
-
-            <div>
-                <h2>Controle Orgânico de Pragas</h2>
-                <p>Soluções naturais para sua plantação</p>
-                <small>28 páginas • 3.2 MB</small>
-            </div>
-        </div>
-
-        <a href="#" class="download-btn">
-            <i class="fa-solid fa-download"></i>
-            Baixar PDF
-        </a>
-    </div>
-
-    <div class="booklet-card">
-        <div class="booklet-info">
-            <div class="booklet-icon">
-                <i class="fa-regular fa-file-lines"></i>
-            </div>
-
-            <div>
-                <h2>Compostagem Caseira</h2>
-                <p>Transforme resíduos em adubo</p>
-                <small>16 páginas • 1.5 MB</small>
-            </div>
-        </div>
-
-        <a href="#" class="download-btn">
-            <i class="fa-solid fa-download"></i>
-            Baixar PDF
-        </a>
-    </div>
-
-    <div class="booklet-card">
-        <div class="booklet-info">
-            <div class="booklet-icon">
-                <i class="fa-regular fa-file-lines"></i>
-            </div>
-
-            <div>
-                <h2>Criação de Galinhas Caipiras</h2>
-                <p>Manejo e cuidados básicos</p>
-                <small>20 páginas • 2.3 MB</small>
-            </div>
-        </div>
-
-        <a href="#" class="download-btn">
-            <i class="fa-solid fa-download"></i>
-            Baixar PDF
-        </a>
-    </div>
+    {% endfor %}
 
 </section>
 

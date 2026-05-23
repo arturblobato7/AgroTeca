@@ -37,24 +37,32 @@
             Enviado por: {{ conteudo[5] }}
         </div>
 
+        {% if conteudo[6] %}
+
+        <a
+            href="{{ url_for('static', filename='uploads/' + conteudo[6]) }}"
+            target="_blank"
+            class="file-preview-btn"
+        >
+            <i class="fa-solid fa-file-pdf"></i>
+            Ver arquivo enviado
+</a>
+
+        {% endif %}
+
         <div class="admin-actions">
 
-           <div class="admin-actions">
+            <a href="/aprovar/{{ conteudo[0] }}" class="approve-btn">
+                Aprovar
+            </a>
 
-    <a href="/aprovar/{{ conteudo[0] }}" class="approve-btn">
-        Aprovar
-    </a>
+            <a href="/rejeitar/{{ conteudo[0] }}" class="reject-btn">
+                Rejeitar
+            </a>
 
-    <a href="/rejeitar/{{ conteudo[0] }}" class="reject-btn">
-        Rejeitar
-    </a>
-
-    <a href="/editar_conteudo/{{ conteudo[0] }}" class="edit-btn">
-        Editar
-    </a>
-
-
-</div>
+            <a href="/editar_conteudo/{{ conteudo[0] }}" class="edit-btn">
+                Editar
+            </a>
 
         </div>
 
