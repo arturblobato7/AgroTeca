@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 
+{% block title %}Enviar Conhecimento · AgroTeca{% endblock %}
+
 {% block content %}
 
 <a href="/" class="back-link">
-    <i class="fa-solid fa-arrow-left"></i>
+    <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
     Voltar
 </a>
 
@@ -12,33 +14,52 @@
     <p>Compartilhe saberes, técnicas e experiências da comunidade</p>
 </section>
 
+{% if sucesso %}
+<div class="alert alert-success" role="status">
+    <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+    Conteúdo enviado com sucesso. Aguarde a avaliação da equipe.
+</div>
+{% endif %}
+
+{% if erro %}
+<div class="alert alert-error" role="alert">
+    <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i> {{ erro }}
+</div>
+{% endif %}
+
 <section class="send-layout">
 
-    <form class="send-form" method="POST" enctype="multipart/form-data">
+    <form class="send-form" method="POST" enctype="multipart/form-data" novalidate>
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 
         <div class="form-group">
-            <label>Nome do colaborador</label>
-            <input 
-                type="text" 
-                name="autor" 
-                placeholder="Ex: Dona Maria, Seu José..."
+            <label for="env-autor">Nome do colaborador</label>
+            <input
+                type="text"
+                id="env-autor"
+                name="autor"
+                placeholder="Ex: Dona Maria, Seu José"
+                autocomplete="name"
+                maxlength="120"
                 required
             >
         </div>
 
         <div class="form-group">
-            <label>Título do conhecimento</label>
-            <input 
-                type="text" 
-                name="titulo" 
+            <label for="env-titulo">Título do conhecimento</label>
+            <input
+                type="text"
+                id="env-titulo"
+                name="titulo"
                 placeholder="Ex: Como preparar a terra para plantar mandioca"
+                maxlength="160"
                 required
             >
         </div>
 
         <div class="form-group">
-            <label>Categoria</label>
-            <select name="categoria" required>
+            <label for="env-categoria">Categoria</label>
+            <select id="env-categoria" name="categoria" required>
                 <option value="Técnica de plantio">Técnica de plantio</option>
                 <option value="Colheita">Colheita</option>
                 <option value="Cartilha">Cartilha</option>
@@ -49,10 +70,10 @@
             </select>
         </div>
 
-        <div class="form-group">
-            <label>Tipo de conteúdo</label>
+        <fieldset class="form-group">
+            <legend>Tipo de conteúdo</legend>
 
-            <div class="content-options">
+            <div class="content-options" role="radiogroup" aria-label="Tipo de conteúdo">
                 <label>
                     <input type="radio" name="tipo" value="Texto" checked>
                     Texto
@@ -73,26 +94,34 @@
                     Foto
                 </label>
             </div>
-        </div>
+        </fieldset>
 
         <div class="form-group">
-            <label>Descreva o conhecimento</label>
-            <textarea 
-                name="descricao" 
-                rows="6" 
-                placeholder="Conte com suas palavras como essa técnica, história ou experiência funciona..."
+            <label for="env-descricao">Descreva o conhecimento</label>
+            <textarea
+                id="env-descricao"
+                name="descricao"
+                rows="6"
+                placeholder="Conte com suas palavras como essa técnica, história ou experiência funciona"
+                maxlength="5000"
                 required
             ></textarea>
         </div>
 
         <div class="form-group">
-            <label>Anexar arquivo (opcional)</label>
-            <input type="file" name="arquivo">
-            <small>Você pode anexar foto, vídeo, áudio ou documento.</small>
+            <label for="env-arquivo">Anexar arquivo (opcional)</label>
+            <input
+                type="file"
+                id="env-arquivo"
+                name="arquivo"
+                accept="image/*,audio/*,video/*,application/pdf,.doc,.docx,.txt"
+                aria-describedby="env-arquivo-hint"
+            >
+            <small id="env-arquivo-hint">Você pode anexar foto, vídeo, áudio ou documento (PDF, Word, texto).</small>
         </div>
 
         <button type="submit" class="send-button">
-            <i class="fa-solid fa-paper-plane"></i>
+            <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
             Enviar para avaliação
         </button>
 
@@ -127,7 +156,7 @@
         </div>
 
         <div class="review-warning">
-            🤖 A IA pode ajudar a organizar o texto, mas a aprovação final é humana.
+            A IA pode ajudar a organizar o texto, mas a aprovação final é humana.
         </div>
 
     </aside>
@@ -135,7 +164,7 @@
 </section>
 
 <div class="send-footer">
-    🌱 Todo conhecimento enviado será tratado com respeito e valorização da cultura local
+    Todo conhecimento enviado será tratado com respeito e valorização da cultura local
 </div>
 
 {% endblock %}

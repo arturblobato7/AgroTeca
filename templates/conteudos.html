@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% block title %}Acervo · AgroTeca{% endblock %}
+
 {% block content %}
 
 <a href="/" class="back-link">
@@ -31,6 +33,15 @@
         <div class="admin-author">
             Enviado por: {{ conteudo[5] }}
         </div>
+
+        {% if conteudo[6] %}
+        <a href="{{ url_for('static', filename='uploads/' + conteudo[6]) }}"
+           target="_blank" class="file-preview-btn">
+            <i class="fa-solid fa-file-arrow-down"></i>
+            Abrir arquivo
+        </a>
+        {% endif %}
+
     </div>
 
     {% endfor %}

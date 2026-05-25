@@ -1,62 +1,88 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>AgroTeca</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+{% extends "base.html" %}
 
-    <!-- Ícones -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+{% block title %}AgroTeca · Biblioteca de saberes da comunidade{% endblock %}
 
-    <!-- Fonte -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-</head>
-<body>
+{% block content %}
 
-    <main class="container">
+<section class="masthead">
+    <span class="masthead-kicker">Jutaiteua · Pará</span>
+    <h1>
+        Agro<em>Teca</em>
+    </h1>
+    <p class="masthead-lede">
+        Um acervo de saberes vivos: técnicas de plantio, vídeos, cartilhas
+        e a memória da nossa comunidade, organizada para circular entre
+        quem cultiva, ensina e aprende.
+    </p>
+    <div class="masthead-meta">
+        <span>Volume I</span>
+        <span>Edição contínua</span>
+        <span>Acesso livre</span>
+    </div>
+</section>
 
-        <section class="hero">
-            <div class="home-icon">
-                <i class="fa-solid fa-house"></i>
-            </div>
+<h2 class="section-title">Navegue pelo acervo</h2>
 
-            <h1>AgroTeca</h1>
+<nav class="directory" aria-label="Seções do acervo">
 
-            <p>
-                Bem-vindo! Aqui você encontra informações sobre agricultura,
-                técnicas de plantio e conhecimento compartilhado da nossa comunidade.
-            </p>
-        </section>
+    <a href="/tecnicas" class="directory-entry">
+        <span class="directory-num">01</span>
+        <span class="directory-body">
+            <span class="directory-name">Técnicas de plantio</span>
+            <span class="directory-desc">Como preparar a terra, espaçamentos, ciclos de cultivo e cuidados essenciais por cultura.</span>
+        </span>
+        <span class="directory-arrow" aria-hidden="true">›</span>
+    </a>
 
-        <section class="cards">
-            <a href="/tecnicas" class="card card-olive">
-                <i class="fa-solid fa-seedling"></i>
-                <span>Técnicas de Plantio</span>
-            </a>
+    <a href="/videos" class="directory-entry">
+        <span class="directory-num">02</span>
+        <span class="directory-body">
+            <span class="directory-name">Vídeos da comunidade</span>
+            <span class="directory-desc">Gravações de moradores demonstrando práticas, contando histórias e ensinando ofícios.</span>
+        </span>
+        <span class="directory-arrow" aria-hidden="true">›</span>
+    </a>
 
-            <a href="/videos" class="card card-brown">
-                <i class="fa-solid fa-video"></i>
-                <span>Vídeos da Comunidade</span>
-            </a>
+    <a href="/cartilhas" class="directory-entry">
+        <span class="directory-num">03</span>
+        <span class="directory-body">
+            <span class="directory-name">Cartilhas</span>
+            <span class="directory-desc">Materiais para imprimir e levar à roça, com linguagem direta e ilustrações.</span>
+        </span>
+        <span class="directory-arrow" aria-hidden="true">›</span>
+    </a>
 
-            <a href="/cartilhas" class="card card-light">
-                <i class="fa-solid fa-book-open"></i>
-                <span>Cartilhas</span>
-            </a>
+    <a href="/comunidade" class="directory-entry">
+        <span class="directory-num">04</span>
+        <span class="directory-body">
+            <span class="directory-name">Nossa comunidade</span>
+            <span class="directory-desc">Quem somos, onde estamos, o que cultivamos e por que esse acervo existe.</span>
+        </span>
+        <span class="directory-arrow" aria-hidden="true">›</span>
+    </a>
 
-            <a href="/comunidade" class="card card-green">
-                <i class="fa-solid fa-users"></i>
-                <span>Informações da Comunidade</span>
-            </a>
+</nav>
 
-            <a href="/enviar" class="card card-send">
-                <i class="fa-solid fa-upload"></i>
-                <span>Enviar Conhecimento</span>
-            </a>
+<h2 class="section-title">Contribuir</h2>
 
-            <a href="/conteudos" class="card card-light">
-                <i class="fa-solid fa-folder-open"></i>
-                <span>Acervo da Biblioteca</span>
-            </a>
+<div class="home-actions">
 
-        </section>
+    <a href="/enviar" class="home-action home-action-primary">
+        <span class="home-action-label">
+            <small>Compartilhar</small>
+            <strong>Enviar conhecimento</strong>
+        </span>
+        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+    </a>
+
+    <a href="/conteudos" class="home-action home-action-secondary">
+        <span class="home-action-label">
+            <small>Consultar</small>
+            <strong>Biblioteca completa</strong>
+        </span>
+        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+    </a>
+
+</div>
+
+{% endblock %}
