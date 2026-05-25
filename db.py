@@ -6,7 +6,6 @@ from werkzeug.security import generate_password_hash
 
 DB_PATH = os.environ.get("AGROTECA_DB_PATH", "database.db")
 
-
 @contextmanager
 def get_db():
     """Context-managed sqlite connection. Commits on success, rolls back on
@@ -57,12 +56,11 @@ def criar_banco():
 
 
 def _seed_admin_if_configured(cur):
-    """Seed an initial admin only when explicit credentials are provided via
-    environment. Avoids shipping a well-known default password."""
-    admin_user = os.environ.get("AGROTECA_ADMIN_USER")
-    admin_pass = os.environ.get("AGROTECA_ADMIN_PASSWORD")
-    if not admin_user or not admin_pass:
-        return
+    """Seed an initial admin. Uses env vars when set; otherwise falls back to
+    fixed defaults so a fresh clone can log in without configuration."""
+    admin_user = os.environ.get("AGROTECA_ADMIN_USER", "curador")
+    admin_pass = os.environ.get("AGROTECA_ADMIN_PASSWORD", "1234")
+    admin_name = os.environ.get("AGROTECA_ADMIN_NAME", "Curador")
 
     cur.execute("SELECT 1 FROM usuarios WHERE role = 'admin' LIMIT 1")
     if cur.fetchone():
@@ -70,11 +68,7 @@ def _seed_admin_if_configured(cur):
 
     cur.execute(
         "INSERT INTO usuarios (nome, usuario, senha, role) VALUES (?, ?, ?, 'admin')",
-        (
-            os.environ.get("AGROTECA_ADMIN_NAME", "Curador"),
-            admin_user,
-            generate_password_hash(admin_pass),
-        ),
+        (admin_name, admin_user, generate_password_hash(admin_pass)),
     )
 
 
