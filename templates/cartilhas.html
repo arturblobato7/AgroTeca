@@ -49,6 +49,9 @@
     {% elif conteudo[6].endswith('.png') or conteudo[6].endswith('.jpg') or conteudo[6].endswith('.jpeg') %}
         <i class="fa-solid fa-file-image"></i>
 
+    {% elif conteudo[6].endswith('.doc') or conteudo[6].endswith('.docx') %}
+        <i class="fa-solid fa-file-word"></i>
+
     {% else %}
         <i class="fa-solid fa-file"></i>
     {% endif %}

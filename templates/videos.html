@@ -16,173 +16,55 @@
 
 <section class="video-list">
 
+    {% for video in videos %}
+
     <div class="video-card">
 
         <div class="video-thumb">
+            {% if video[6] and video[6].lower().endswith('.mp4') %}
+            <video controls preload="metadata"
+                   src="{{ url_for('static', filename='uploads/' + video[6]) }}">
+            </video>
+            {% else %}
             <div class="play-button">
                 <i class="fa-solid fa-play"></i>
             </div>
+            {% endif %}
         </div>
 
         <div class="video-content">
 
             <div class="video-top">
-                <h2>Como plantar açaí em pequenas áreas</h2>
-
-                <span class="video-time">
-                    12:34
-                </span>
+                <h2>{{ video[1] }}</h2>
             </div>
 
-            <p>Seu José mostra técnicas de plantio de açaí</p>
+            <p>{{ video[2] }}</p>
 
-            <span class="video-tag">
-                Plantio
-            </span>
+            <div class="video-meta">
+                <span class="video-tag">{{ video[3] }}</span>
+                <small>Enviado por {{ video[5] }}</small>
+            </div>
+
+            {% if video[6] %}
+            <a href="{{ url_for('static', filename='uploads/' + video[6]) }}"
+               target="_blank" class="file-preview-btn">
+                <i class="fa-solid fa-file-arrow-down"></i>
+                Abrir arquivo
+            </a>
+            {% endif %}
 
         </div>
 
     </div>
 
-    <div class="video-card">
+    {% else %}
 
-        <div class="video-thumb">
-            <div class="play-button">
-                <i class="fa-solid fa-play"></i>
-            </div>
-        </div>
+    <p class="empty-state">
+        Ainda não há vídeos aprovados. Envie o seu em
+        <a href="/enviar">Enviar conhecimento</a>.
+    </p>
 
-        <div class="video-content">
-
-            <div class="video-top">
-                <h2>Colheita sustentável de cacau</h2>
-
-                <span class="video-time">
-                    8:45
-                </span>
-            </div>
-
-            <p>Dona Maria ensina a colher cacau sem prejudicar a planta</p>
-
-            <span class="video-tag">
-                Colheita
-            </span>
-
-        </div>
-
-    </div>
-
-    <div class="video-card">
-
-        <div class="video-thumb">
-            <div class="play-button">
-                <i class="fa-solid fa-play"></i>
-            </div>
-        </div>
-
-        <div class="video-content">
-
-            <div class="video-top">
-                <h2>Preparo da farinha tradicional</h2>
-
-                <span class="video-time">
-                    15:20
-                </span>
-            </div>
-
-            <p>Processo completo da mandioca à farinha</p>
-
-            <span class="video-tag">
-                Processamento
-            </span>
-
-        </div>
-
-    </div>
-
-    <div class="video-card">
-
-        <div class="video-thumb">
-            <div class="play-button">
-                <i class="fa-solid fa-play"></i>
-            </div>
-        </div>
-
-        <div class="video-content">
-
-            <div class="video-top">
-                <h2>Entrevista: 40 anos de agricultura familiar</h2>
-
-                <span class="video-time">
-                    25:10
-                </span>
-            </div>
-
-            <p>História do Seu Pedro e sua família</p>
-
-            <span class="video-tag">
-                Entrevista
-            </span>
-
-        </div>
-
-    </div>
-
-    <div class="video-card">
-
-        <div class="video-thumb">
-            <div class="play-button">
-                <i class="fa-solid fa-play"></i>
-            </div>
-        </div>
-
-        <div class="video-content">
-
-            <div class="video-top">
-                <h2>Agrofloresta na prática</h2>
-
-                <span class="video-time">
-                    18:30
-                </span>
-            </div>
-
-            <p>Como combinar diferentes cultivos</p>
-
-            <span class="video-tag">
-                Técnicas
-            </span>
-
-        </div>
-
-    </div>
-
-    <div class="video-card">
-
-        <div class="video-thumb">
-            <div class="play-button">
-                <i class="fa-solid fa-play"></i>
-            </div>
-        </div>
-
-        <div class="video-content">
-
-            <div class="video-top">
-                <h2>Controle natural de pragas</h2>
-
-                <span class="video-time">
-                    10:15
-                </span>
-            </div>
-
-            <p>Soluções caseiras para proteger a plantação</p>
-
-            <span class="video-tag">
-                Técnicas
-            </span>
-
-        </div>
-
-    </div>
+    {% endfor %}
 
 </section>
 

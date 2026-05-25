@@ -148,7 +148,12 @@ def _register_routes(app):
 
     @app.route("/videos")
     def videos():
-        return render_template("videos.html")
+        with get_db() as conn:
+            rows = conn.execute(
+                "SELECT * FROM conteudos WHERE status = ? AND tipo = ? ORDER BY id DESC",
+                (STATUS_APROVADO, "Vídeo"),
+            ).fetchall()
+        return render_template("videos.html", videos=rows)
 
     @app.route("/cartilhas")
     def cartilhas():
