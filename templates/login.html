@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}Entrar · AgroTeca{% endblock %}
+
+{% block content %}
+
+<div class="auth-wrapper">
+
+    <div class="auth-card">
+
+        <div class="auth-logo" aria-hidden="true">
+            <i class="fa-solid fa-seedling"></i>
+        </div>
+
+        <h1 class="auth-title">Entrar</h1>
+        <p class="auth-subtitle">Acesse sua conta para continuar</p>
+
+        {% if erro %}
+        <div class="alert alert-error" role="alert">
+            <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i> {{ erro }}
+        </div>
+        {% endif %}
+
+        <form method="POST" novalidate>
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+            <div class="form-group">
+                <label for="login-usuario">Usuário</label>
+                <input
+                    type="text"
+                    id="login-usuario"
+                    name="usuario"
+                    placeholder="Seu nome de usuário"
+                    autocomplete="username"
+                    maxlength="60"
+                    required
+                    autofocus
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="login-senha">Senha</label>
+                <div class="input-password-wrapper">
+                    <input
+                        type="password"
+                        id="login-senha"
+                        name="senha"
+                        placeholder="Sua senha"
+                        autocomplete="current-password"
+                        maxlength="128"
+                        required
+                    >
+                    <button type="button"
+                            class="toggle-password"
+                            aria-label="Mostrar senha"
+                            aria-pressed="false"
+                            aria-controls="login-senha"
+                            onclick="togglePassword('login-senha', 'icon-senha')">
+                        <i class="fa-regular fa-eye" id="icon-senha" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <small class="forgot-password-hint"><a href="/esqueci-senha">Esqueci minha senha</a></small>
+            </div>
+
+            <button type="submit" class="btn-primary">
+                <i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i> Entrar
+            </button>
+
+        </form>
+
+        <p class="auth-link">Não tem conta? <a href="/registro">Criar conta</a></p>
+
+    </div>
+
+</div>
+
+{% endblock %}

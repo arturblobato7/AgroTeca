@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}Vídeos da comunidade · AgroTeca{% endblock %}
+
+{% block content %}
+
+<a href="/" class="back-link">
+    <i class="fa-solid fa-arrow-left"></i>
+    Voltar
+</a>
+
+<section class="page-title">
+    <h1>Vídeos da Comunidade</h1>
+    <p>Aprenda com a experiência dos agricultores de Jutaiteua</p>
+</section>
+
+<section class="video-list">
+
+    {% for video in videos %}
+
+    <div class="video-card">
+
+        <div class="video-thumb">
+            {% if video[6] and video[6].lower().endswith('.mp4') %}
+            <video controls preload="metadata"
+                   src="{{ url_for('static', filename='uploads/' + video[6]) }}">
+            </video>
+            {% else %}
+            <div class="play-button">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="video-content">
+
+            <div class="video-top">
+                <h2>{{ video[1] }}</h2>
+            </div>
+
+            <p>{{ video[2] }}</p>
+
+            <div class="video-meta">
+                <span class="video-tag">{{ video[3] }}</span>
+                <small>Enviado por {{ video[5] }}</small>
+            </div>
+
+            {% if video[6] %}
+            <a href="{{ url_for('static', filename='uploads/' + video[6]) }}"
+               target="_blank" class="file-preview-btn">
+                <i class="fa-solid fa-file-arrow-down"></i>
+                Abrir arquivo
+            </a>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+    {% else %}
+
+    <p class="empty-state">
+        Ainda não há vídeos aprovados. Envie o seu em
+        <a href="/enviar">Enviar conhecimento</a>.
+    </p>
+
+    {% endfor %}
+
+</section>
+
+<div class="videos-footer">
+    Novos vídeos adicionados toda semana pela comunidade
+</div>
+
+{% endblock %}

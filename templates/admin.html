@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+
+{% block title %}Painel de Curadoria · AgroTeca{% endblock %}
+
+{% block content %}
+
+<section class="page-title">
+    <h1>Painel de Curadoria</h1>
+    <p>Gerencie todos os conteúdos enviados pela comunidade</p>
+</section>
+
+<div class="admin-stats">
+    <div class="admin-stat-card stat-pending">
+        <span class="stat-number">{{ total_pendente }}</span>
+        <span class="stat-label">Pendentes</span>
+    </div>
+    <div class="admin-stat-card stat-approved">
+        <span class="stat-number">{{ total_aprovado }}</span>
+        <span class="stat-label">Aprovados</span>
+    </div>
+    <div class="admin-stat-card stat-rejected">
+        <span class="stat-number">{{ total_rejeitado }}</span>
+        <span class="stat-label">Rejeitados</span>
+    </div>
+</div>
+
+<div class="admin-tabs">
+    <a href="/admin?aba=pendente"
+       class="admin-tab {% if aba == 'pendente' %}active{% endif %}">
+        Pendentes
+        {% if total_pendente > 0 %}
+        <span class="tab-badge">{{ total_pendente }}</span>
+        {% endif %}
+    </a>
+    <a href="/admin?aba=aprovado"
+       class="admin-tab {% if aba == 'aprovado' %}active{% endif %}">
+        Aprovados
+    </a>
+    <a href="/admin?aba=rejeitado"
+       class="admin-tab {% if aba == 'rejeitado' %}active{% endif %}">
+        Rejeitados
+    </a>
+</div>
+
+<section class="admin-list">
+
+    {% if conteudos %}
+
+        {% for conteudo in conteudos %}
+
+        <div class="admin-card">
+
+            <div class="admin-top">
+                <div>
+                    <h2>{{ conteudo[1] }}</h2>
+                    <span>{{ conteudo[3] }} &bull; {{ conteudo[4] }}</span>
+                </div>
+
+                <div class="status-badge
+                    {% if conteudo[7] == 'aprovado' %}badge-approved
+                    {% elif conteudo[7] == 'rejeitado' %}badge-rejected
+                    {% else %}badge-pending{% endif %}">
+                    {% if conteudo[7] == 'aprovado' %}Aprovado
+                    {% elif conteudo[7] == 'rejeitado' %}Rejeitado
+                    {% else %}Pendente{% endif %}
+                </div>
+            </div>
+
+            <p class="admin-description">{{ conteudo[2] }}</p>
+
+            <div class="admin-author">
+                <i class="fa-solid fa-user"></i> {{ conteudo[5] }}
+            </div>
+
+            {% if conteudo[6] %}
+            <a href="{{ url_for('static', filename='uploads/' + conteudo[6]) }}"
+               target="_blank" class="file-preview-btn">
+                <i class="fa-solid fa-file-arrow-down"></i>
+                Ver arquivo anexado
+            </a>
+            {% endif %}
+
+            <div class="admin-actions">
+
+                {% if conteudo[7] == 'pendente' %}
+                <form method="POST" action="/aprovar/{{ conteudo[0] }}" class="inline-form">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <button type="submit" class="approve-btn" aria-label="Aprovar {{ conteudo[1] }}">
+                        <i class="fa-solid fa-check" aria-hidden="true"></i> Aprovar
+                    </button>
+                </form>
+
+                <form method="POST" action="/rejeitar/{{ conteudo[0] }}" class="inline-form">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <button type="submit" class="reject-btn" aria-label="Rejeitar {{ conteudo[1] }}">
+                        <i class="fa-solid fa-xmark" aria-hidden="true"></i> Rejeitar
+                    </button>
+                </form>
+                {% endif %}
+
+                <a href="/editar_conteudo/{{ conteudo[0] }}" class="edit-btn" aria-label="Editar {{ conteudo[1] }}">
+                    <i class="fa-solid fa-pen" aria-hidden="true"></i> Editar
+                </a>
+
+                <form method="POST" action="/deletar/{{ conteudo[0] }}" class="inline-form delete-form" data-confirm-delete>
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <button type="button" class="delete-btn" aria-label="Excluir {{ conteudo[1] }}">
+                        <i class="fa-solid fa-trash" aria-hidden="true"></i> Excluir
+                    </button>
+                    <span class="delete-confirm" role="alert">
+                        <strong>Excluir definitivamente?</strong>
+                        <button type="submit" class="confirm-delete">Sim, excluir</button>
+                        <button type="button" class="cancel-delete">Cancelar</button>
+                    </span>
+                </form>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+
+    <div class="admin-empty" role="status">
+        <i class="fa-solid fa-inbox" aria-hidden="true"></i>
+        <p>Nenhum conteúdo {{ aba }} no momento.</p>
+    </div>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

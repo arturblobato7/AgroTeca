@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Acervo · AgroTeca{% endblock %}
+
+{% block content %}
+
+<a href="/" class="back-link">
+    <i class="fa-solid fa-arrow-left"></i>
+    Voltar
+</a>
+
+<section class="page-title">
+    <h1>Acervo da Biblioteca</h1>
+    <p>Conhecimentos aprovados e compartilhados pela comunidade</p>
+</section>
+
+<section class="admin-list">
+
+    {% for conteudo in conteudos %}
+
+    <div class="admin-card">
+        <div class="admin-top">
+            <div>
+                <h2>{{ conteudo[1] }}</h2>
+                <span>{{ conteudo[3] }} • {{ conteudo[4] }}</span>
+            </div>
+        </div>
+
+        <p class="admin-description">
+            {{ conteudo[2] }}
+        </p>
+
+        <div class="admin-author">
+            Enviado por: {{ conteudo[5] }}
+        </div>
+
+        {% if conteudo[6] %}
+        <a href="{{ url_for('static', filename='uploads/' + conteudo[6]) }}"
+           target="_blank" class="file-preview-btn">
+            <i class="fa-solid fa-file-arrow-down"></i>
+            Abrir arquivo
+        </a>
+        {% endif %}
+
+    </div>
+
+    {% endfor %}
+
+</section>
+
+{% endblock %}

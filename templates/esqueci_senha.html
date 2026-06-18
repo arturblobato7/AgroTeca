@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Esqueci minha senha · AgroTeca{% endblock %}
+
+{% block content %}
+
+<div class="auth-wrapper">
+
+    <div class="auth-card">
+
+        <div class="auth-logo" aria-hidden="true">
+            <i class="fa-solid fa-key"></i>
+        </div>
+
+        <h1 class="auth-title">Esqueci minha senha</h1>
+        <p class="auth-subtitle">Aqui o sistema funciona sem internet, então a senha não pode ser redefinida por e-mail.</p>
+
+        <div class="review-box auth-review-box">
+            <div class="review-step">
+                <span>1</span>
+                <p>Procure um curador da AgroTeca na sua comunidade.</p>
+            </div>
+
+            <div class="review-step">
+                <span>2</span>
+                <p>Diga seu nome de usuário e peça para redefinir sua senha.</p>
+            </div>
+
+            <div class="review-step">
+                <span>3</span>
+                <p>O curador define uma nova senha para você entrar de novo.</p>
+            </div>
+        </div>
+
+        <p class="auth-link">Lembrou a senha? <a href="/login">Voltar para o login</a></p>
+
+    </div>
+
+</div>
+
+{% endblock %}
